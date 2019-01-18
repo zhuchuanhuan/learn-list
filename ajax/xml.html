@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>XML实现二级联动</title>
+</head>
+
+<body>
+<select id="provicr">
+	 <option>请选择</option>
+     <option>山东省</option>
+     <option>江苏省</option>
+     <option>辽宁省</option>
+</select>
+<select id="city">
+	 <option>请选择</option>
+</select>
+<script>
+var provinceEle=document.getElementById("provicr");
+	provinceEle.onchange=function(){
+		var xhr=genXhr();
+		var provcince=provinceEle.value
+		//建立连接open()方法，请求类型和位置
+		xhr.open("post","08.php");
+		//客服端向服务器发送请求参数send(请求参数)
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("povcince="+provcince);
+		//监听服务器的通信状态
+		//接受服务器端的数据
+		xhr.onreadystatechange=function(){
+			var cit=document.getElementById("city");
+			var opts=cit.getElementsByTagName("option")
+			for(var a=opts.length-1;a>0;a--){
+			cit.removeChild(opts[a])
+			}
+			if(xhr.readyState==4&&xhr.status==200){
+					var xmlDoc=xhr.responseXML;
+					console.log(xmlDoc)
+					var cityval=xmlDoc.getElementsByTagName("city");
+					console.log(cityval)
+					for(var i=0;i<cityval.length;i++){
+						var cityvalue=cityval[i].childNodes[0].nodeValue;
+						var option=document.createElement("option");
+						var txtNode=document.createTextNode(cityvalue);
+						option.appendChild(txtNode);
+						
+						cit.appendChild(option);
+						}
+					//var dat=xhr.responseText;
+					//console.log(data)
+					//var name=data.getElementsByTagName("name")[0];
+					//var tet=name.innerHTML;
+					
+	 			}
+			}
+		}
+function genXhr(){
+		var xml;
+		if(window.XMLHttpRequest){
+			xml=new XMLHttpRequest();
+		}else{
+			  xml=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+		return xml;
+	}
+</script>
+</body>
+</html>

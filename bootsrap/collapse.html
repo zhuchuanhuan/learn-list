@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<h1>jquery折叠插件效果collapse</h1>
+<a data-toggle="collapse" class="btn btn-success" href="#coll">link按钮</a><!--控制元素-->
+<button data-toggle="collapse" data-target="#coll" class="btn btn-info" type="button">button</button>
+<div id="coll" class="alert alert-success collapse"><!--目标元素-->
+    <div class="alert alert-success">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+        aliquam aut, cupiditate dolor excepturi exercitationem incidunt iste libero nihil placeat quisquam ratione rem
+        repudiandae suscipit tempora veniam voluptates? Impedit, voluptatibus.
+    </div>
+</div>
+<div class="panel-group" id="accordion">
+    <ul class="panel panel-danger">
+        <li class="panel-heading">
+            <a data-toggle="collapse" class="panel-title" href="#xiyou" data-parent="#accordion">西游记简介</a>
+        </li>
+        <div id="xiyou" class="collapse panel-collapse">
+            <div class="panel-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorem excepturi magni minima nihil?
+                A
+                accusamus aperiam architecto aspernatur cupiditate, deleniti expedita explicabo fugiat ipsum, itaque
+                omnis
+                quisquam, rem tempora.
+            </div>
+        </div>
+    </ul>
+    <ul class="panel panel-danger">
+        <li class="panel-heading">
+            <a data-toggle="collapse" class="panel-title" href="#xiyouji" data-parent="#accordion">西游记简介</a>
+        </li>
+        <div id="xiyouji" class="collapse">
+            <div class="panel-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorem excepturi magni minima nihil?
+                A
+                accusamus aperiam architecto aspernatur cupiditate, deleniti expedita explicabo fugiat ipsum, itaque
+                omnis
+                quisquam, rem tempora.
+            </div>
+        </div>
+    </ul>
+    <ul class="panel panel-danger">
+        <li class="panel-heading">
+            <a data-toggle="collapse" class="panel-title" href="#xiyouj" data-parent="#accordion">西游记简介</a>
+        </li>
+        <div id="xiyouj" class="collapse">
+            <div class="panel-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dolorem excepturi magni minima nihil?
+                A
+                accusamus aperiam architecto aspernatur cupiditate, deleniti expedita explicabo fugiat ipsum, itaque
+                omnis
+                quisquam, rem tempora.
+            </div>
+        </div>
+    </ul>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

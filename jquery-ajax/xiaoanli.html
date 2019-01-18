@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<select id="province">
+	<option>请选择</option>
+</select>
+<select id="city">
+	<option>请选择</option>
+</select>
+<script src="jquery-1.11.3.js"></script>
+<script>
+//页面加载时，执行ajax请求-$.get()
+//页面加载$(document).ready(function(e){});简写版$(function(){})
+$(function(){
+$.get("xiaoanli.php",function(data){
+	for(var i=0;i<data.length;i++){
+	    console.log(data)
+		$("#province").append($("<option>"+data[i]+"</option>"))
+		}
+	},"json")
+$("#province").change(function(){
+	//清空city
+	$("#city").empty().append($("<option>请选择</option>"))
+	//构建key=value格式发送请求
+	var ProValue={"province":$("#province").val()}
+	$.post("xiaoanlicity.php",ProValue,function(data){
+		for(var a=0;a<data.length;a++){
+			$("#city").append($("<option>"+data[a]+"</option>"))
+		}
+	 },"json")
+	})
+})
+//当用户选择省份时，执行ajax请求-$.post()
+</script>
+</body>
+</html>

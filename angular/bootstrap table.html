@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html ng-app="MO">
+<head>
+    <meta charset="UTF-8">
+    <title>分页</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div style="width:800px;margin:0 auto;" ng-controller="Ctable">
+    <div id="dataShow" style="width:800px;margin:0 auto;">
+        <table class="table" id="table">
+            <thead>
+            <tr>
+                <th style="width: 11%;">ID</th>
+                <th style="width: 11%;">选择</th>
+                <th style="width: 15%;">姓名</th>
+                <th style="width: 17%;">账号</th>
+                <th style="width: 17%;">部门</th>
+                <th style="width: 20%;">邮箱</th>
+                <th style="width: 20%;">已使用容量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(x,k) in arr">
+                <td><input class="radio" type="radio" name="ve" ng-model="sele"></td>
+                <td>{{x}}</td>
+                <td class="client">{{k.name}}</td>
+                <td>{{k.nick}}</td>
+                <td>{{k.derpar}}</td>
+                <td>{{k.mail}}</td>
+                <td>{{k.did}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <div id="page" style="width:450px;margin:0 auto;"></div>
+    <ul class="pagination">
+        <li>
+            <a href="" ng-click="" ng-hide="currentPage==1" id="prePage">上一页</a>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn1">1</a>
+        </li>
+        <li>
+            <span class="pages_span" id="prePoint">...</span>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn2">{{currentPage-2}}</a>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn3">{{currentPage-1}}</a>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn4" ng-style="obj" ng-bind="currentPage"></a>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn5">{{currentPage+1}}</a>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn6">{{currentPage+2}}</a>
+        </li>
+        <li>
+            <span class="pages_span" id="sufPoint">...</span>
+        </li>
+        <li>
+            <a class="arrt" ng-click="" id="page_btn7">{{PageCount}}</a>
+        </li>
+        <li>
+            <a ng-hide="currentPage==PageCount" id="sufPage">下一页</a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.js"></script>
+<script type="text/javascript">
+    //编造表数据
+    //表头
+    // var head=
+    //     '<thead><tr>'+
+    //     '<td> 姓  名 </td>'+
+    //     '<td> 年  龄 </td>'+
+    //     '<td> 彦  值* </td>'+
+    //     '<td> 成  绩 </td>'+
+    //     '<td> 身 高cm </td>'+
+    //     '</tr></thead><tbody>';
+    //表内容，后台返回的内容可以封装到这里，随时取用，但是如果数据量很大估计会相当耗资源。
+    // var pageData=[];
+    // for(var i=1;i<100;i++){
+    //     var data='<tr>'+
+    //         '<td>学生'+i+'</td>'+
+    //         '<td>'+Math.round(Math.random()*20)+'</td>'+
+    //         '<td>'+Math.round(Math.random()*5)+'颗星</td>'+
+    //         '<td>'+Math.round(Math.random()*100)+'</td>'+
+    //         '<td>'+Math.round(Math.random()*200)+'cm</td>'+
+    //         '</tr>';
+    //     pageData.push(data);
+    // }
+    // 表结尾
+    // var end='</tbody>';
+
+    // $(function(){
+    //     var Count = pageData.length;//记录条数
+    //     var PageSize=10;//设置每页示数目
+    //     var PageCount=Math.ceil(Count/PageSize);//计算总页数
+    //     var currentPage =1;//当前页，默认为1。
+    //     //造个简单的分页按钮
+    //     for(var i=1;i<=PageCount;i++){
+    //         var pageN='<a href="#" selectPage="'+i+'" >第'+i+'页</a>';
+    //         $('#page').append(pageN);
+    //     }
+    //     //显示默认页（第一页）
+    //     $('#table').empty().append(head);
+    //     for(i=(currentPage-1)*PageSize;i<PageSize*currentPage;i++){
+    //         $('#table').append(pageData[i]);
+    //     }
+    //     $('#table').append(end);
+    //
+    //     //显示选择页的内容
+    //     $('a').click(function(){
+    //         var selectPage=$(this).attr('selectPage');
+    //         $('#table').html('');
+    //         $('#table').append(head);
+    //         for(i=(selectPage-1)*PageSize;i<PageSize*selectPage;i++){
+    //             $('#table').append(pageData[i]);
+    //         }
+    //         $('#table').append(end);
+    //     });
+    // });
+</script>
+<script>
+    angular.module('MO', ['ng'])
+        .controller('Ctable', function ($scope, $interval) {
+            $scope.arry = [
+                {'name': '张国荣', 'nick': '哥哥', 'derpar': 'sj', 'mail': 'zhanggg@126.com', 'width': '30%', 'did': 1},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 2},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 3},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 4},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 5},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 6},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 7},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 8},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 9},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 10},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 11},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 12},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 13},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 14},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 15},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 16},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 17},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 18},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 19},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 20},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 21},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 22},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 23},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 24},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 25},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 26},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 27},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 28},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 29},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 30},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 31},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 32},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 33},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 34},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 35},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 36},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 37},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 38},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 39},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 40},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 41},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 42},
+                {'name': '梅艳芳', 'nick': '妹妹', 'derpar': 'js', 'mail': 'zhanggg@126.com', 'width': '80%', 'did': 43},
+                {'name': '迈克尔·杰克逊', 'nick': '杰克', 'derpar': 'ch', 'mail': 'zhanggg@126.com', 'width': '40%', 'did': 44},
+            ];
+            $scope.Count = $scope.arry.length;//记录条数
+            $scope.PageSize = 6;//设置每页示数目
+            $scope.PageCount = Math.ceil($scope.Count / $scope.PageSize);//计算总页数
+            $scope.currentPage = 1;//当前页，默认为1。
+            $scope.arr = [];
+            for (var i = ($scope.currentPage - 1) * $scope.PageSize; i < $scope.PageSize * $scope.currentPage; i++) {
+                $scope.arr.push($scope.arry[i])
+            }
+            console.log($scope.arr)
+            $("#prePoint").hide();
+            $("#page_btn1").hide();
+            $("#page_btn2").hide();
+            $("#page_btn3").hide();
+            $('#prePage').click(function () {
+                if ($scope.currentPage > 1) {
+                    $scope.currentPage--
+                    for (var i = (selectPage - 1) * $scope.PageSize; i < $scope.PageSize * selectPage; i++) {
+                        $scope.arr.push($scope.arry[i])
+                    }
+
+                }
+            })
+            $('.arrt').click(function () {
+                // $interval(function () {
+                //     $scope.currentPage++;
+                //     console.log("model数据age的值被改变了" + $scope.currentPage)
+                // }, 1000)
+                $scope.currentPage = Number($(this).text())
+                var selectPage = Number($(this).text())
+                $scope.arr = [];
+                for (var i = (selectPage - 1) * $scope.PageSize; i < $scope.PageSize * selectPage; i++) {
+                    $scope.arr.push($scope.arry[i])
+                }
+                if ($scope.currentPage >= 2) {
+                    $("#page_btn3").show();
+                }
+                if ($scope.currentPage >= 3) {
+                    $("#page_btn2").show();
+                }
+                if ($scope.currentPage >= 4) {
+                    $("#page_btn1").show();
+                }
+                if ($scope.currentPage >= 5) {
+                    $("#prePoint").show();
+                }
+                if ($scope.currentPage < $scope.PageCount) {
+                    $("#sufPage").show();
+                    $("#page_btn5").show();
+                }
+                if ($scope.currentPage <= $scope.PageCount - 2) {
+                    $("#page_btn6").show();
+                }
+                if ($scope.currentPage <= $scope.PageCount - 3) {
+                    $("#page_btn7").show();
+                }
+                if ($scope.currentPage <= $scope.PageCount - 4) {
+                    $("#sufPoint").show();
+                }
+                if ($scope.currentPage <= 3) {
+                    $("#page_btn1").hide();
+                }
+                if ($scope.currentPage <= 4) {
+                    $("#prePoint").hide();
+                }
+                if ($scope.currentPage <= 2) {
+                    $("#page_btn2").hide();
+                }
+                if ($scope.currentPage <= 1) {
+                    $("#page_btn3").hide();
+                }
+                if ($scope.currentPage >= $scope.PageCount - 3) {
+                    $("#sufPoint").hide();
+                }
+                if ($scope.currentPage >= $scope.PageCount - 2) {
+                    $("#page_btn7").hide();
+                }
+                if ($scope.currentPage >= $scope.PageCount - 1) {
+                    $("#page_btn6").hide();
+                }
+                if ($scope.currentPage >= $scope.PageCount) {
+                    $("#page_btn5").hide();
+                }
+            });
+            $scope.obj = {
+                "background-color": "#4f90fb",
+                "border": "1px solid #ddd",
+                "color": "#fff"
+            }
+
+        })
+
+</script>
+</body>
+</html>

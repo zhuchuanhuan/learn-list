@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实现ajax异步交互</title>
+</head>
+
+<body>
+<input type="button" value="异步" id="btn">
+<script>
+var btn=document.getElementById("btn");
+btn.onclick=function(){
+var xhr=genXhr();
+//建立连接open()方法，请求类型和位置
+xhr.open("post","02.php");
+//客服端向服务器发送请求参数send(请求参数)
+//如果使用post请求类型的话，必须在send()方法调用之前，使用setRequestHeader() 
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xhr.send("user=zhangwuji");
+//监听服务器的通信状态
+//接受服务器端的数据
+xhr.onreadystatechange=function(){
+	if(xhr.readyState==4&&xhr.status==200){
+			var data=xhr.responseText;
+			console.log(data)
+			
+		}
+	}
+}
+function genXhr(){
+	var xml;
+	if(window.XMLHttpRequest){
+		xml=new XMLHttpRequest();
+	}else{
+		  xml=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+	return xml;
+	}
+</script>
+</body>
+</html>

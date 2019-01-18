@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>为元素绑定事件监听新方法:给元素添加data属性</h1>
+<button data-hide="me">点击一下，我就隐藏</button>
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $('[data-hide="me"]').click(function () {
+        $(this).hide();
+    })
+</script>
+
+</html>

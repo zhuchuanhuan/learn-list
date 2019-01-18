@@ -1,0 +1,36 @@
+body{
+  position:relative;
+}
+.page{
+  transition: all  1s linear;
+  position: absolute;//相对body绝对定位,脱离文档，下面的按钮不会被挤下来
+  width: 100%;
+}
+
+.page.ng-leave{//要离开ngview元素动画开始的样式
+  left: 0%;
+  opacity: 1;
+}
+.page.ng-leave.ng-leave-active{//动画结束时的样式
+  left: -100%;
+  opacity: 0;
+}
+
+.page.ng-enter{//要进ngview元素动画开始的样式
+  left: 100%;
+  opacity: 0;
+}
+.page.ng-enter-active{
+  left: 0%;
+  opacity: 1;
+}
+.footer-mune{
+  line-height: 50px;
+  margin-bottom: 0px;
+  margin-left: -15px;
+  margin-right: -15px;
+  text-align: center;
+  >li{
+    width: 32%;
+  }
+}

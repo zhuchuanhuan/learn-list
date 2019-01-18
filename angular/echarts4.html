@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <!--<script src="js/echarts.common.min.js"></script>-->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+</div>
+<script>
+
+option = {
+    tooltip: {
+        show:true,
+        trigger: 'item',
+        formatter: function(params, ticket, callback){
+            var num = '20.000.00';
+            console.log(222222222)
+            var str = '<div style="text-align: center" id="toolTipBox"><p style="font-size:20px;margin:0px">'+ num + '</p><p style="font-size:16px;margin:0px;color:blue;">总数</p></div>'
+            return str
+        },
+        position: function (point, params, dom, rect, size) {
+            //size参数可以拿到提示框的outerWidth和outerheight，dom参数可以拿到提示框div节点。
+            //console.log(dom)可以看到，提示框是用position定位
+            var marginW = Math.ceil(size.contentSize[0]/2);
+            var marginH = Math.ceil(size.contentSize[1]/2);
+            dom.style.marginLeft='-' + marginW + 'px';
+            dom.style.marginTop='-' + marginH + 'px';
+            return ['50%', '50%'];
+        },
+        alwaysShowContent:true,
+        backgroundColor:'#f3f5f6',	//设置提示框的背景色
+        textStyle:{
+            color:'#333'
+        }
+    },
+    series: [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            hoverAnimation:false,	//关闭 hover 在扇区上的放大动画效果。
+            cursor:'default', //鼠标悬浮时在图形元素上时鼠标的样式是什么。同 CSS 的 cursor。
+            silent:true,	//图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
+            label: {
+                normal: {
+                    show: false,
+                    position: 'default'
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ]
+        }
+    ]
+};
+
+var myChart = echarts.init(document.getElementById('main'));
+myChart.setOption(option);
+// 显示 tooltip
+myChart.dispatchAction({
+    type: 'showTip',
+    seriesIndex: 0,
+    dataIndex: 0
+});
+
+</script>
+</body>
+</html>

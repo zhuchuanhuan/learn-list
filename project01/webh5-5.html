@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    body {
+        background: #f0f1f2 url("img/phone5.png") no-repeat top center;
+        background-size: 100%;
+    }
+
+    .lin-u {
+        display: table;
+        height: 192px;
+    }
+    .photo {
+        color: #919191;
+        text-align: left;
+    }
+
+    .she {
+        display: block;
+        width: 150px;
+        height: 90px;
+        margin: 3px auto;
+        background: #ffffff url("img/bg-2.png") no-repeat center;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+    }
+    .shes {
+        display: block;
+        width: 150px;
+        height: 90px;
+        margin: 3px auto;
+        background: #ffffff url("img/bg-1.png") no-repeat center;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+    }
+</style>
+<body>
+<h1 class="lin-u"></h1>
+<!--<p class="notes">本人信息<span>（*为必填）</span></p>-->
+<div class="container">
+    <div class="row">
+        <form class="" role="form" action="xiaoanli.php" method="post" onsubmit="return check2(this)">
+            <div class="form-group mo-bottom">
+                <label class="sr-only" for="photo">个人照片：</label>
+                <!--<input class="form-control line" type="file" id="photo" name="photo" accept="image/*" placeholder="请上传本人正面照片">-->
+                <input type='file' id='file' accept="image/*"  onchange="c()" name='j' style="display: none;">
+                <input class="form-control line photo" id="photo" type='button' value="点击上传本人正面照片"
+                       onclick=j.click()>
+            </div>
+            <div class="she">
+                <img src="" id='show' style="width: 100%;height: 100%;">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="idphoto">身份证照片：</label>
+                <!--<input class="form-control line" type="file" id="idphoto" name="idphoto" accept="image/*" placeholder="请上传本人正面照片">-->
+                <input type='file' id="files" accept="image/*" onchange="b()" name='q' style="display: none;">
+                <input class="form-control line photo" id="idphoto" type='button'  value="点击上传身份证正面照片"
+                       onclick=q.click()>
+            </div>
+            <div class="shes">
+                <img src="" id='shows' style="width: 100%;height: 100%;">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="bank">银行卡：</label>
+                <input class="form-control line" type="text" id="bank" name="bank" placeholder="请输入银行卡号">
+            </div>
+            <input type="submit" id="next5" class="btn btn-info btn-block" value="下一步">
+                   <!--onclick="location.href='webh5-6.html'">-->
+        </form>
+    </div>
+</div>
+<!--<input type="file" id='file'; onchange="c()">-->
+</body>
+<script type="text/javascript">
+    function c() {
+        var r = new FileReader();
+        f = document.getElementById('file').files[0];
+        r.readAsDataURL(f);
+        r.onload = function (e) {
+            document.getElementById('show').src = this.result;
+        };
+    };
+    function b() {
+        var r = new FileReader();
+        f = document.getElementById('files').files[0];
+        r.readAsDataURL(f);
+        r.onload = function (e) {
+            document.getElementById('shows').src = this.result;
+        };
+    }
+</script>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    function check2(form) {
+        var sr=$("#show").attr("src");
+        var srr=$("#shows").attr("src");
+        if(sr.length==0){
+            alert("请上传本人照片");
+            return false;
+        }
+        if(srr.length==0){
+            alert("请上传身份证照片");
+            return false;
+        }
+        return true
+    }
+</script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

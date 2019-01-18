@@ -1,0 +1,15 @@
+body{
+    color: #333;
+    margin: 15px;
+}
+h1{
+    font-size: 3em;
+    color: #228;
+
+}
+.box{
+    padding: 3px;
+    border:1px solid #226;
+    color: #228;
+    background: #ddf;
+}

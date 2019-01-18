@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<form onSubmit="return submitForm();" method="post" action="cookies.html">
+	<input type="text" id="user">
+    <input type="text" id="pwd">
+    <input type="submit" value="登录">
+</form>
+</head>
+<script>
+	function submitForm(){
+		
+		var user=document.getElementById("user");
+		var username=user.value;
+		var time=new Date().getTime()+1000*360*24*7;
+		var d=new Date(time);
+		document.cookie=
+		"user="+username+";expires="+d;//固定格式一个cookie只能存储一个值
+		return true;
+		}
+</script>
+<body>
+</body>
+</html>

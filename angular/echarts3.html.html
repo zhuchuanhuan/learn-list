@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <!--<script src="js/echarts.common.min.js"></script>-->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+<div id="pieDiagram" style="width: 200px;height:200px;"></div>
+
+<script>
+    function PercentPie(option){
+        this.backgroundColor = option.backgroundColor||'#fff';
+        this.color           = option.color||['#38a8da','#d4effa'];
+        this.fontSize        = option.fontSize||12;
+        this.domEle          = option.domEle;
+        this.value           = option.value;
+        this.name            = option.name;
+        this.title           = option.title;
+        this.init = function(){
+            var _that = this;
+            var option = {
+                backgroundColor:_that.backgroundColor,
+                color:_that.color,
+                title: {
+                    text: _that.title,
+                    top:'3%',
+                    left:'1%',
+                    textStyle:{
+                        color: '#333',
+                        fontStyle: 'normal',
+                        fontWeight: 'normal',
+                        fontFamily: 'sans-serif',
+                        fontSize: 16,
+                    }
+                },
+                series: [{
+                    name: '来源',
+                    type: 'pie',
+                    radius: ['60%', '75%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation:false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center',
+                            textStyle: {
+                                fontSize: _that.fontSize,
+                                fontWeight: 'bold'
+                            },
+                            formatter:'{b}\n{c}%'
+                        }
+                    },
+                    data: [{
+                        value: _that.value,
+                        name: _that.name,
+                        label:{
+                            normal:{
+                                show:true
+                            }
+                        }
+                    },
+                        {
+                            value: 100-_that.value,
+                            name: ''
+                        }
+                    ]
+                }]
+            };
+
+            echarts.init(_that.domEle).setOption(option);
+        };}
+
+</script>
+<script type="text/javascript">
+    var option1 = {
+            value:20,//百分比,必填
+            name:'及格率',//必填
+            title:'学习成绩',
+            backgroundColor:null,
+            color:['#38a8da','#d4effa'],
+            fontSize:16,
+            domEle:document.getElementById("pieDiagram")//必填
+        },
+        percentPie1 = new PercentPie(option1);
+    percentPie1.init();
+</script>
+</body>
+</html>

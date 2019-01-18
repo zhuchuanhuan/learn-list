@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--ng-model：可以直接声名模型变量，并且绑定在元素上;-->
+<!--方向一的绑定model>view，各种指令都可以实现-->
+<!--方向二的绑定view>model，只有ng-model指令可以-->
+<div class="container" ng-controller="C1">
+
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng'])
+        .controller('C1', function ($scope) {
+            //依赖注入：先从理解依赖注入打算要解决的问题开始。
+            // 一个AngularJS应用程序中的一些组件可能会依赖于其它组件，
+            // 例如，控制器需要使用 $scope 组件，使得控制器可以向视图传递数据，
+            // 即控制器依赖于 $scope 组件来执行工作。
+
+            // 有了依赖注入，函数里面的参数提出需求，告诉angular这个参数需要什么的组件
+            //例如$scope.cart[]，这个cart[]参数会通过$scope组件告诉angular我需要$scope支持的封装组件,
+
+            // AngularJS应用程序中的一个组件通过在工厂函数的参数上声明依赖($scope)，并且声明的名称即服务（各种参数名称：例$scope,$interval,$rootscope)要与所依赖的组件相匹配。
+            // 依赖注入改变了函数参数的用途，没有依赖注入，参数会被用于接收调用者想传入的任何对象，
+            // 但是有了依赖注入后，函数使用参数来提出需求，告诉AngularJS它需要什么样的组件
+
+        })
+</script>
+</html>

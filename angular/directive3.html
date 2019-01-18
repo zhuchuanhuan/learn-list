@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app="myModule">
+<meta charset="utf-8">
+<head>
+
+</head>
+<body>
+<div hello></div>
+<div hello></div>
+<div hello></div>
+<div hello></div>
+<div helloto></div>
+<div helloto></div>
+<div helloto></div>
+</body>
+<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script>
+ angular.module("myModule",['ng'])
+     .directive('hello',function () {
+         return{
+             restrict:'AE',
+             template:'<div><input type="text" ng-model="name">{{name}}</div>\n',
+             replace:true
+         }
+     })
+     .directive('helloto',function () {
+         return{
+             restrict:'AE',
+             scope:{},//建立指令独立作用域，相同指令相同变量互不影响
+             template:'<div><input type="text" ng-model="name">{{name}}</div>\n',
+             replace:true
+         }
+     })
+
+</script>
+</html>

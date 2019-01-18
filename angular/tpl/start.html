@@ -1,0 +1,39 @@
+<div ng-include="'tpl/header.html'"></div><!----ng-include指令发送AJAX请求公共页面---->
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">start</h3>
+    </div>
+    <div class="panel-body">
+        <p>主菜单</p>
+        <p>{{msg}}</p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, atque aut consequuntur dolor eius error exercitationem expedita hic inventore, itaque maiores, nostrum omnis praesentium quas quidem quis recusandae velit voluptas.
+    </div>
+    <a class="btn btn-danger" href="#/main">跳转</a>
+</div>
+<div class="form-group has-feedback">
+    <input ng-model="kw" type="text" class="form-control" placeholder="搜索更多菜单">
+    <span class="form-control-feedback glyphicon glyphicon-search"></span>
+</div>
+<div class="list-group">
+    <a class="list-group-item" href="#/detail/{{dish.did}}" ng-repeat="dish in dishlist"><!---点击查看详情页面的时候，需要知道是哪个菜的详情再去服务器取数据，显示在这道菜的详情--->
+        <button class="btn btn-success" ng-click="jump('/detail'+dish.did)"></button><!----不用元素A的href请求，按钮用jump()函数请求detail带上参数dish.did的写法----dish.did是变量所以直接加在后面不能放在引号里面--------->
+        <div class="media"><!-------------------------------------------------------------解决办法，必须在路由地址中添加请求参数，此参数可以被detail.html所读取--->
+            <div class="media-left media-middle">
+                <img class="media-object" src="img/{{dish.im_sm}}" alt="">
+            </div>
+            <div class="media-body">
+                <h4>{{dish.name}}</h4>
+                <p>原料{{dish.material}}</p>
+                <hr/>
+                <div>价格：{{dish.price | currency :'￥'}}</div>
+            </div>
+        </div>
+    </a>
+</div>
+<button ng-show="hasmore" class="btn btn-success" ng-click="jump('/main')">加载更多</button>
+<div ng-hide="hasmore" class="alert alert-danger">
+        <span class="glyphicon glyphicon-alert">
+            没有更多数据可供加载了
+        </span>
+</div>
+<div ng-include="'tpl/footer.html'"></div>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<div class="container">
+    <h2>创建Model变量两种方法</h2>
+    <!--1).声明自定义模块(module)-->
+    <!--angular.module("模块名",[])-->
+    <!--2).在当前AngularJS应用中注册自定义模块-->
+    <!--ng-app='模块名'-->
+    <!--3).在自定义模块中创建Controller函数，其中创建model数据,用控制器创建模型变量!!!!-->
+    <!--4).在view中创建Controller对象的实例，指定其作用范围!!!!-->
+    <!--5).在控制器的作用范围内输出model变量-->
+    <!--ng-controller指令调用控制器,(相当于web创建实例,调用构造函数(Controller),传入参数)-->
+    <!--ngBind:在当前元素的inner HTML上输出指定表达式的值-->
+    <!--ngRepeat:为HTML增加循环功能,循环当前元素,在配合in遍历当前模型变量-->
+    <!--ngif:为HTML增加选择功能，只有表达式的值为true时，当前元素才能添加到DOM树，否则就从DOM树上删除-->
+    <!--语法ng-if="表达式"-->
+    <!--$scope每个控制器实例都对应一个作用范围对象-->
+    <!--ng-src:解决img等标签当没有读到anjular.js是路径{{表达式}}会显示不出来，只显示{{}}，所以要用ng-src-->
+    <div ng-controller="C1">
+        <p>{{names}}</p>
+        <p ng-bind="names"></p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(i,p) in names">
+                <td>{{p.name}}</td>
+                <td>{{p.country}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1',['ng']).
+    controller('C1',function ($scope) {
+        $scope.names = [
+            {name:'Jani',country:'Norway'},
+            {name:'Hege',country:'Sweden'},
+            {name:'Kai',country:'Denmark'}
+        ];
+        $scope.names.push({name:'kaka',country:'marycouny'})
+        $scope.names.push({name:'susa',country:'suouny'})
+    })//ngs是angular里面自带的模块
+</script>
+</html>

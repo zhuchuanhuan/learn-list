@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html ng-app>
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当。-->
+<div class="container">
+    <!--{{表达式}}：输出该位置的表达式的值
+    算数运算加减乘除取余都可以，++和--不行
+    比较运算大于小于等于的都可以
+    逻辑运算-->
+    <!--声明变量ng-init="age=10;salary=1000"-->
+    <span ng-init="age=10;salary=1000"></span>
+    <p>{{++age}}</p><!--++-----------------------不行-->
+    <p>逻辑：{{age>=8 && salary<=2000}}</p>
+    <h3>三目运算</h3>
+    <span ng-init="age=18"></span>
+    <p>{{age>=18? "成年人":"未成年"}}</p>
+    <h3>赋值运算</h3>
+    <span ng-init="age=11"></span>
+    <p>{{age=11+2}}</p>
+    <!--<p>{{age+=2}}</p>-------------------------不行-->
+    <h3>调用string对象的成员属性和方法</h3>
+    <span ng-init="nam='Zhuchuanhuan'"></span>
+    <p>{{nam.length}}</p>
+    <p>{{nam.substring(0,3)}}</p>
+    <h3>创建对象</h3>
+    <!--只能直接量语法,不能用new-->
+    <p>{{ {age:18,eanme:"tom"} }}</p>
+    <p>{{ {age:18,eanme:"tom"}.eanme }}</p>
+    <h3>创建数组</h3>
+    <!--只能直接量语法，不能用new-->
+    <p>{{ [10,20,30] }}</p>
+    <p>{{ [10,20,30][0] }}</p>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+</html>

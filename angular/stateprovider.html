@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="helloword">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-router/1.0.18/angular-ui-router.js"></script>
+</head>
+<style>
+    .active {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<body>
+<a href="#/hello" ui-sref-active="active">hello</a>
+<a href="#/about" ui-sref-active="active">about</a>
+<ui-view></ui-view>
+</body>
+<script>
+    angular.module('helloword', ['ng','ui.router'])
+        .config(function ($stateProvider) {
+            $stateProvider
+                .state({
+                    name: 'hello',
+                    url: '/hello',
+                    template: '<h3>hello,word</h3>\n'
+                }).state({
+                name: 'about',
+                url: '/about',
+                template: '<h3>Its the UI-Router hello world app!</h3>'
+            })
+        })
+</script>
+</html>

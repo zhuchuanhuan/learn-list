@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="../../../06代码资源/js特效/jquery.slides响应式焦点图/js/jquery.slides.js"></script>
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--ng-style:赋值为一个model对象，用户当前元素指定样式-->
+<div class="container">
+    <h2>创建Model变量两种方法</h2>
+    <div ng-controller="C1">
+        <img src="{{imsrc}}" alt="">
+        <button ng-click="next()">上一张</button>
+        <button ng-click="prve()">上一张</button>
+    </div>
+    <div ng-controller="C2">
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-success" style="width: 40%;">
+            </div>
+        </div>
+        <div class="progress progress-striped active">
+            <div ng-style="mystyle" class="progress-bar progress-bar-success">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng']).
+    controller('C1', function ($scope) {
+        $scope.imsrc = '1.jpg';
+        $scope.next = function () {
+            var num = parseInt($scope.imsrc.substring(0, $scope.imsrc.indexOf('.')))
+            num = num < 4 ? num + 1 : 1;
+            $scope.imsrc = num + '.jpg';
+        }
+        $scope.prve = function () {
+            var num = parseInt($scope.imsrc.substring(0, $scope.imsrc.indexOf('.')))
+            num = num < 2 ? 4 : num - 1;
+            $scope.imsrc = num + '.jpg';
+        }
+    }).controller('C2', function ($scope, $interval) {
+        var per = 0;
+        $scope.mystyle = {width: "20%"};
+        var t = $interval(function () {
+            per += 10;
+            $scope.mystyle.width = per + "%"
+            if(per>100){//停止计时器
+                $interval.cancel(t)
+            }
+        }, 200)
+    })//ngs是angular里面自带的模块
+</script>
+</html>

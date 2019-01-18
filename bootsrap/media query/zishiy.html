@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<style>
+    ul,li{
+        list-style: none;
+        padding:0;
+        margin:0;
+    }
+    div{
+        float: left;
+    }
+    .box{
+        width:100%;
+    }
+    .left{
+        background-color:#7a2518;
+        height: 200px;
+    }
+    .middle{
+        background-color: #008cba;
+    }
+    .right{
+        background-color: #2a7621;
+        height: 300px;
+    }
+    .middle ul li{
+        float: left;
+        width:25%;
+    }
+    .middle>ul>li img{
+        width: 90%;
+    }
+    @media screen and (min-width:992px){
+        .left{
+          width: 20%;
+        }
+        .middle{
+           width: 60%;
+        }
+        .right{
+            width: 20%;
+        }
+    }
+    @media screen and (min-width:768px) and (max-width: 992px){
+        .left{
+            width: 30%;
+        }
+        .middle{
+            width: 70%;
+        }
+        .right{
+            display: none;
+        }
+    }
+    @media screen and (max-width: 768px){
+        .left{
+            width: 100%;
+        }
+        .middle{
+            width: 100%;
+        }
+        .right{
+            display: none;
+        }
+    }
+</style>
+<body>
+<div class="box">
+    <div class="left">
+        <ul>
+            <li><a href="#">元宵节</a></li>
+            <li><a href="#">元宵节</a></li>
+            <li><a href="#">元宵节</a></li>
+        </ul>
+    </div>
+    <div class="middle">
+        <ul>
+            <li><img src="img/110.jpg" alt=""></li>
+            <li><img src="img/110.jpg" alt=""></li>
+            <li><img src="img/110.jpg" alt=""></li>
+            <li><img src="img/110.jpg" alt=""></li>
+        </ul>
+        <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis dolorem eius labore, laboriosam laudantium minuLorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis dolorem eius labore, laboriosam laudantium minus nam nisi non nostrum odio placeat repudiandae, sunt suscipit temporibus velit voluptatem. Eveniet, molestias!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis dolorem eius labore, laboriosam laudantium minus nam nisi non nostrum odio placeat repudiandae, sunt suscipit temporibus velit voluptatem. Eveniet, molestias!</p>
+            <p></p>
+        </div>
+        div
+    </div>
+    <div class="right">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci cumque dolor dolore, dolorum enim ex facere, fugit itaque magni modi nam officiis omnis optio qui quisquam rerum similique voluptas?
+    </div>
+</div>
+</body>
+</html>

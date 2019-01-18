@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mymodule1">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Title</title>
+</head>
+<body>
+<!--onclick是绑定全局函数-->
+<!--ng-click:为元素绑定监听函数（不是全局函数，而是模型函数,使用$scope.模型函数=function(）{-->
+
+<div>
+    <h1>ng中的MVC模式</h1>
+    <div ng-controller="c1">
+        <p ng-bind="name"></p>
+        <div ng-controller="c2">
+            <p ng-bind="name"></p>
+        </div>
+    </div>
+
+    <div ng-controller="c3">
+        <p>{{productList}}</p>
+        <p ng-bind="productList"></p>
+        <hr>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>图片</th>
+                <th>价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in productList">
+                <td>{{$index+1}}</td>
+                <td>{{p.pname}}</td>
+                <!--<td>{{p.img}}</td>-->
+                <td>
+                    <img style="width: 50px" ng-src="img/{{p.img}}">
+                </td>
+                <td>{{p.price}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button ng-click="load()" class="btn btn-success">添加</button>
+    </div>
+    <div ng-controller="c4">
+        <select name="" id="" ng-model="name">
+            <option value="logo%20(1).png">蔬菜</option>
+            <option value="logo%20(2).png">水果</option>
+            <option value="logo%20(3).png">肉类</option>
+            <option value="logo%20(4).png">坚果</option>
+            <option value="logo%20(1).png">海鲜</option>
+        </select>
+        <img ng-src="img/{{name}}">
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>姓名</th>
+                <th>工资</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox" ng-checked="all"></td>
+                <td>青菜</td>
+                <td>萝卜</td>
+                <td><input class="btn btn-danger btn-xs" type="button" value="删除"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" ng-checked="all"></td>
+                <td>青菜</td>
+                <td>萝卜</td>
+                <td><input class="btn btn-danger btn-xs" type="button" value="删除"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" ng-checked="all"></td>
+                <td>青菜</td>
+                <td>萝卜</td>
+                <td><input class="btn btn-danger btn-xs" type="button" value="删除"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div><input type="checkbox" ng-model="all">全选</div>
+    </div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('mymodule1',['ng']).
+    controller('c1',function($scope,$rootScope){
+        $scope.name='素素'
+        console.log('一个控制c1创建完成')
+    }).
+    controller('c2',function($scope){
+        console.log('一个控制c2创建完成')
+    }).
+    controller('c3',function($scope,$rootScope){
+        console.log('一个控制c3创建完成')
+        $scope.productList=[
+            {pname:'可口可乐',img:'logo%20(1).png',price:'3.2'},
+            {pname:'百世可乐',img:'logo%20(1).png',price:'3.2'}
+            ];
+        $scope.productList.push(
+            {pname:'非常可乐',img:'logo%20(1).png',price:'3.5'})
+        $scope.load=function(){
+                console.log('loading...')
+            for(var i=0;i<3;i++){
+                    var p={};
+                    p.pname='可口可乐';
+                    p.img='logo%20(1).png';
+                    p.price='2.0';
+                    $scope.productList.push(p)
+            }
+        }
+    }).
+    controller('c4',function ($scope) {
+//        $scope.i=parseInt($scope.name)
+        $scope.name="logo%20(1).png";
+        console.log($scope.name)
+    }).
+    controller('c5',function($scope){
+
+    })
+</script>
+</body>
+</html>

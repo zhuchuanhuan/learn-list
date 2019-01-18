@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="myModule">
+<meta charset="utf-8">
+<head>
+</head>
+<body>
+<div ng-controller="myCtrl1">
+    <div loader howToload="loadData1()">滑动加载</div>//一个指令在不同的控制器里面可以给他传递不同的参数值，执行相应的效果
+</div>
+<div ng-controller="myCtrl2">
+    <loader howToload="loadData2()">滑动加载</loader>
+</div>
+
+</body>
+<script src="js/angular.min.js"></script>
+<script>
+ angular.module("myModule",['ng'])
+     .controller('myCtrl1',function($scope){
+            $scope.loadData1=function () {
+                console.log('加载数据中111...')
+         }
+     })
+     .controller('myCtrl2',function($scope){
+            $scope.loadData2=function () {
+                 console.log('加载数据中222...')
+     }
+ })
+     .directive('loader',function () {
+         return{
+             restrict:'AE',
+             link:function (scope, element, attrs) {
+                 element.bind('mouseenter',function (event) {
+                     scope.$apply(attrs.howtoload)
+                 })
+             }
+         }
+     })
+</script>
+</html>

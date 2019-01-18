@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<input type="button" value="Ajax" id="btn">
+<script>
+var btn=document.getElementById("btn");
+btn.onclick=function(){
+	var xhr=genXhr();
+	xhr.open("post","07.php");
+		//客服端向服务器发送请求参数send(请求参数)
+		//请求的数据格式key=value不能改变
+		//将value值构建符合XML格式的数据--字符串
+		//定义变量  -  专门构建XML格式的数据
+		//在send方法进行拼串
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		var user="<user><name>zhuanchuanhuan</name><pwd>123456</pwd></user>"
+		xhr.send("user="+user);
+		//监听服务器的通信状态
+		//接受服务器端的数据
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+					var data=xhr.responseXML;
+					//console.log(data)
+					var name=data.getElementsByTagName("name")[0];
+					var tet=name.innerHTML;
+					console.log(tet)
+	 		}
+		}
+}
+function genXhr(){
+		var xml;
+		if(window.XMLHttpRequest){
+			xml=new XMLHttpRequest();
+		}else{
+			  xml=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+		return xml;
+	}
+</script>
+</body>
+</html>

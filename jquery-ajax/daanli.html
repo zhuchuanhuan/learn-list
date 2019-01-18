@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<form id="service" name="myform">
+	用户名：<input type="text" name="username" id="user">
+    密码：<input type="text" name="password" id="pwd">
+    <input type="button" id="btn" value="登录">
+</form>
+<script src="jquery-1.11.3.js"></script>
+<script>
+	//表单序列化
+	//serialize()-返回json字符串
+	//--是使用表单的name属性作为关键字key
+	//{key:value,key:value}
+	//serializeArray()-返回json对象
+	//json对象是由一个数组组成
+	//[ele1,ele2,ele3]
+	$("#btn").click(function(){
+		// var data={"username":$("#user").val(),
+		// 			"password":$("#pwd").val()}
+		var data=$("#service").serialize();
+		$.post("daanli.php",data,function(data){//post里面的data只能是key:value形式
+			console.log(data)
+			})
+		})
+</script>
+</body>
+</html>

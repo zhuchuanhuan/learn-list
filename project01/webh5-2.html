@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    body {
+        background: #13406f url("img/sdjkf.jpg") no-repeat;
+        -webkit-background-size: 100%;
+        background-size: 100%;
+    }
+
+    .bg-r {
+        color: #ccc;
+    }
+
+    .bg-b {
+        color: #15bcce;
+        padding: 0;
+        border: none;
+        /*background-color: #eee;*/
+    }
+
+    .btn-default[disabled] {
+        background-color: #ffffff;
+    }
+
+    .bg-a {
+        margin: 0 auto;
+        width: 90%;
+        background-color: #ffffff;
+        height: 200px;
+        padding-top: 20px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    .lin-u {
+        display: table;
+        height: 340px;
+    }
+
+    .bs {
+        -webkit-box-shadow: 0 0 0 #fff;
+        -moz-box-shadow: 0 0 0 #fff;
+        box-shadow:none;
+        -webkit-appearance: none;
+        border: none;
+        height:45px;
+    }
+    .checkbox a{
+    font-size: 13px;
+    }
+    .form-m{
+        margin-bottom: 0px;
+    }
+    .addon-x{
+        background-color: #fff;
+        border: none;
+    }
+    .left-b{
+        border-bottom-left-radius:0px
+    }
+    .left-t{
+        border-top-left-radius:0px
+    }
+    .right-b{
+        border-bottom-right-radius:0px
+    }
+    .right-t{
+        border-top-right-radius:0px
+    }
+    .b{
+        border-top:1px solid #f1f1f1;
+    }
+    .btn-h{
+        height:45px;
+        font-size:18px
+    }
+    /*.rad label:before {*/
+    /*display: inline-block;*/
+    /*top: 0;*/
+    /*height: 16px;*/
+    /*width: 16px;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*}*/
+    /*.rad label:before {*/
+    /*margin: 5px 0;*/
+    /*border: 1px solid #0089d0;*/
+    /*border-radius: 50%;*/
+    /*}*/
+</style>
+<body>
+<h1 class="lin-u"></h1>
+<!--<div class="bg-a">-->
+    <div class="container">
+        <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+        <form id="service" name="myform" action="xiaoanli.php" method="post" onsubmit="return check2(this)">
+            <div class="form-group form-m">
+                <!--<label class="sr-only" for="user">手机号：</label>-->
+                <div class="input-group">
+                    <span class="input-group-addon addon-x left-b"><span class="glyphicon glyphicon-user bg-r"></span></span>
+                    <input class="form-control bs right-b" id="user" type="tel" name="username" placeholder="请输入手机号">
+                </div>
+                <!--<span class="help-block">必须填写数字</span>-->
+            </div>
+            <div class="form-group form-m b">
+                <!--<label class="sr-only" for="pwd">验证码：</label>-->
+                <div class="input-group">
+                    <span class="input-group-addon addon-x left-t"><span class="glyphicon glyphicon-lock bg-r"></span></span>
+                    <input class="form-control bs" id="pwd" type="password" name="password" placeholder="请输入验证码">
+                    <span class="input-group-addon addon-x right-t">
+                    <input type="button" id="btn" class="btn btn-default bg-b" onclick="sendemail()" value="获取验证码">
+                </span>
+                    <!--<span class="input-group-btn">00-->
+                    <!--<button id="btn" class="btn btn-default bg-b" type="button" onclick="sendemail()" value="获取验证码"></button>-->
+                    <!--&lt;!&ndash;<input type="button" id="btn" value="免费获取验证码" onclick="sendemail()" />&ndash;&gt;-->
+                    <!--</span>-->
+                </div>
+                <!--<span class="help-block">必须填写数字</span>-->
+            </div>
+            <div class="checkbox checkbox-success">
+                <input id="checkbox3" type="checkbox">
+                <label for="checkbox3">
+                    <a href="yinsixieyi.html">《请同意服务和隐私协议》</a>
+                </label>
+                <!--<div class="radio">-->
+                <!--<input type="radio" name="radio1" id="radio1" value="option1" checked=""><label for="radio1">-->
+                <!--<a href="yinsixieyi.html">《请同意服务和隐私协议》</a>-->
+                <!--</label>-->
+            </div>
+            <!--<label>-->
+                <!--<input type="checkbox"><a href="yinsixieyi.html">《请同意服务和隐私协议》</a>-->
+            <!--</label>-->
+            <!--<button id="btn" class="btn btn-danger btn-block">提交</button>-->
+            <input type="submit" id="sub" class="btn btn-info btn-block btn-h" value="借款">
+        </form>
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+<!--</div>-->
+<script src="js/jquery-1.11.3.js"></script>
+<!--<script src="js/self.js"></script>-->
+<script>
+    $('input[type="checkbox"]').prop('checked', "true")
+
+    function check2(form) {
+        var patt = /^1[34578]\d{9}$/;
+        var val = $('#user').val();
+        var vall = $('#pwd').val();
+        if (!patt.test(val)) {
+            alert("请输入正确有效的电话号码");
+            return false;
+        }
+        if (vall.length == 0) {
+            alert("验证输入不能为空")
+            console.log("输入不能为空");
+            return false;
+        }
+        if ($('input[type="checkbox"]').prop('checked') == false) {
+            alert("请同意服务和隐私协议");
+            return false;
+        }
+        return true
+    }
+</script>
+<script type="text/javascript">
+    var countdown = 300;
+
+    function sendemail() {
+        var obj = $("#btn");
+        settime(obj);
+
+    }
+
+    function settime(obj) { //发送验证码倒计时
+        if (countdown == 0) {
+            obj.attr('disabled', false);
+            //obj.removeattr("disabled");
+            obj.val("免费获取验证码");
+            countdown = 300;
+            return;
+        } else {
+            obj.attr('disabled', true);
+            obj.val("重新发送(" + countdown + ")");
+            countdown--;
+        }
+        setTimeout(function () {
+                settime(obj)
+            }
+            , 1000)
+    }
+</script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

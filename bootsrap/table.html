@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<h1>bootstrap全局样式</h1>
+<div class="container">
+    <h1>Global css style</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>工资</th>
+            <th>生日</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>1000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-success btn-xs" href="#">详情</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>6000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="#">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>8000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-danger btn-xs" href="#">删除记录</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>工资</th>
+            <th>生日</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>1000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-success btn-xs" href="#">详情</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>6000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="#">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>8000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-danger btn-xs" href="#">删除记录</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>工资</th>
+            <th>生日</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>1000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-success btn-xs" href="#">详情</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>6000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-info btn-xs" href="#">修改</a>
+            </td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>朱传焕</td>
+            <td>8000</td>
+            <td>2110-12-25</td>
+            <td>
+                <a class="btn btn-danger btn-xs" href="#">删除记录</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>响应式表格table-responsive必须用在父级元素上</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>工资</th>
+                <th>生日</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1001</td>
+                <td>朱传焕</td>
+                <td>1000</td>
+                <td>2110-12-25</td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="#">详情</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1001</td>
+                <td>朱传焕</td>
+                <td>6000</td>
+                <td>2110-12-25</td>
+                <td>
+                    <a class="btn btn-info btn-xs" href="#">修改</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1001</td>
+                <td>朱传焕</td>
+                <td>8000</td>
+                <td>2110-12-25</td>
+                <td>
+                    <a class="btn btn-danger btn-xs" href="#">删除记录</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    //    用来提示自己出现的错误---只限于开发阶段使用
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js";
+        document.body.appendChild(s)
+    })();
+</script>
+</body>
+</html>

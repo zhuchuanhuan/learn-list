@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美食街</title>
+
+</head>
+
+<body>
+<div id="header"></div>
+<div>主题内容</div>
+<div id="footer"></div>
+<script>
+    $(document).read(//需要发送请求，请求次数多
+        function(){
+            $('#header').load("header.html")//xhr
+            $('#footer').load("footer.html")
+        }
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book category="CHILDREN">
+<china name="中国">
+	<shenfen>江苏
+		<city>南京</city>
+		<city>苏州</city>
+		<city>无锡</city>
+	</shenfen>
+	<shenfen>安徽
+		<city>滁州</city>
+		<city>合肥</city>
+		<city>蚌埠</city>
+	</shenfen>
+	<shenfen>上海
+		<city>静安区</city>
+		<city>浦东区</city>
+		<city>嘉定区</city>
+	</shenfen>
+</china>

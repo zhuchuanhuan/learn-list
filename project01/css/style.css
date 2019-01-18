@@ -1,0 +1,31 @@
+.line {
+    border-color: #e7e7e7;
+    height:45px;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.mo-bottom {
+    margin-bottom: 0px;
+}
+
+.line:focus {
+    outline: none;
+    box-shadow: none;
+}
+.notes{
+    margin:5px 0 3px 5px;
+}
+.notes>span{
+    color: #ea4d3d;
+}
+#next3,#next4,#next5,#next6{
+    width:80%;
+    margin:0 auto;
+    margin-top:8px;
+}

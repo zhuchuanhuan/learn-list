@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<style>
+div{width:100%;
+	height:50px;
+	}
+</style>
+<body>
+<div id="login">
+	<input type="text" id="username" name="boss">
+    <input type="button" id="loginuser" value="登录">
+</div>
+<div id="comment">
+	<input type="" id="">
+</div>
+</body>
+<script>
+	var login=document.getElementById("loginuser")
+	login.click=function(){
+		var xml=genXhr();
+		xml.open("post","05.php");
+		xml.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xml.send();
+		xml.onreadystatechange=function(){
+			if(xml.readyState==4&&xml.status==200){
+				var data=xml.reponseText;
+				}
+			}
+		}
+	function genXhr(){
+		var xml;
+		if(window.XMLHttpRequest){
+			xml=new XMLHttpRequest();
+		}else{
+			  xml=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+		return xml;
+	}
+</script>
+</html>

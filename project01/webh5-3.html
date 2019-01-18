@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    body {
+        background: #f0f1f2 url("img/phone3.png") no-repeat top center;
+        background-size: 100%;
+    }
+
+    .lin-u {
+        display: table;
+        height: 192px;
+    }
+
+</style>
+<body>
+<h1 class="lin-u"></h1>
+<p class="notes">本人信息<span>（*为必填）</span></p>
+<div class="container">
+    <div class="row">
+        <form id="service" role="form" action="xiaoanli.php" method="post" onsubmit="return check2(this)">
+            <div class="form-group mo-bottom">
+                <label class="sr-only" for="real_name">姓名：</label>
+                <input class="form-control line" type="text" id="real_name" name="real_name" placeholder="* 请输入姓名">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="identity">身份证：</label>
+                <input class="form-control line" type="text" id="identity" name="identity" placeholder="* 请输入身份证号">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="qq">QQ号：</label>
+                <input class="form-control line" type="text" id="qq" name="qq" placeholder="* 请输入QQ号码">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="weixin">微信号：</label>
+                <input class="form-control line" type="text" id="weixin" name="weixin" placeholder="  请输入微信号">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="region">所在地区：</label>
+                <input class="form-control line" type="text" id="region" name="ragion" placeholder="  选择居住地区">
+            </div>
+            <div class="form-group mo-bottom ">
+                <label class="sr-only" for="region2">详细地址：</label>
+                <input class="form-control line" type="text" id="region2" name="ragion2" placeholder="  请输入详细地址">
+            </div>
+            <input type="submit" id="next3" class="btn btn-info btn-block" value="下一步">
+                   <!--onclick="location.href='webh5-4.html'">-->
+        </form>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    // $("#next").click(function(){
+    //     var data={"real_name":$("#real_name").val(),
+    //         "identity_code":$("#identity").val()}
+    //     $.post("daanli.php",data,function(data){
+    //         console.log(data)
+    //     })
+    // })
+    function check2(form) {
+        var patt = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/;
+        var patt2 = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+        var val = $('#identity').val();
+        var vall = $("#real_name").val();
+        var valll = $("#qq").val();
+        var vallll = $("#region2").val();
+        if (!patt.test(val)&&!patt2.test(val)) {
+            alert("请输入正确有效的身份证号码")
+            return false
+        }
+        if (vall.length==0) {
+            alert("请输入姓名")
+            return false
+        }
+        if (valll.length==0) {
+            alert("请输入QQ号")
+            return false
+        }
+        if (vallll.length==0) {
+            alert("请输入详细地址")
+            return false
+        }
+        return true
+    }
+</script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

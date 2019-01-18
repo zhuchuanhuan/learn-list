@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.3.js"></script>
+</head>
+
+<body>
+<input type="button" value="跨域" id="btn">
+<script>
+$("#btn").click(function(){
+	$.getJSON("kuayu.php?callback=?",function(data){
+		console.log(data);
+		})
+	
+	})	
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    body{
+        background:#f0f1f2 url("img/phone6.png") no-repeat top center;
+        background-size:100%;
+    }
+    .lin-u {
+        display: table;
+        height: 192px;
+    }
+    .photo{
+        color: #919191;
+        text-align: left;
+    }
+.form-control[readonly]{
+    background-color: #ffffff;
+}
+</style>
+<body>
+<h1 class="lin-u"></h1>
+<!--<p class="notes">本人信息<span>（*为必填）</span></p>-->
+<div class="container">
+    <div class="row">
+        <div  style="text-align: center;vertical-align:middle; margin-top: 10px; color: #10e1f8;">
+            <img src="img/wanc.png" alt="">
+            <h3>完成认证</h3>
+        </div>
+        <!--<form class="" role="form" action="xiaoanli.php" method="post" onsubmit="return check2(this)">-->
+            <!--<div class="form-group mo-bottom">-->
+                <!--<label class="sr-only" for="phone">手机号码：</label>-->
+                <!--<input class="form-control line photo" id="phone" type="text" readonly="readonly" value="">-->
+            <!--</div>-->
+            <!--<div class="form-group mo-bottom ">-->
+                <!--<label class="sr-only" for="operator">运营商密码：</label>-->
+                <!--<input class="form-control line" type="text" autofocus id="operator" name="operator" placeholder="请输入运营商密码">-->
+            <!--</div>-->
+            <!--<input type="submit" id="next6" class="btn btn-info btn-block" value="完成">-->
+        <!--</form>-->
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $(function () {
+        $.get("xiaoanli.php",function(data){
+            $("#phone").attr({"value":"您的手机号码："+data})
+        })
+    })
+    function check2(form) {
+        var val = $('#operator').val();
+        if(val.length==0){
+            alert("输入不能为空")
+            console.log("输入不能为空");
+            return false;
+        }
+        return true
+    }
+</script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

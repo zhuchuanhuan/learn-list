@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    div{
+        border: 1px solid black;
+    }
+</style>
+<body>
+<h1>bootstrap全局css布局样式</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">MD</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">md-2</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">md-2</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">md-2</div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">md-2</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">md-2</div>
+    </div>
+    <h2>一行中放多列</h2>
+    <div class="row">
+        <div class="col-md-2">md-2</div>
+        <div class="col-md-2">md-2</div>
+        <div class="col-md-2">md-2</div>
+        <div class="col-md-2">md-2</div>
+    </div>
+    <h2>四种屏幕中的列</h2>
+    <div class="row">
+        <div class="col-xs-2">xs-2</div>
+        <div class="col-xs-6">xs-6</div>
+        <div class="col-xs-4">xs-4</div>
+    </div>
+    <h2>在不同屏幕宽度的不同宽度显示</h2>
+    <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-12">不同屏幕显示不同宽度</div>
+    </div>
+    <h2>不同宽度下隐藏列hidden</h2>
+    <div class="row">
+        <div class="col-xs-2">xs-2</div>
+        <div class="col-xs-10 col-sm-8">xs-8</div>
+        <div class="col-xs-2 hidden-xs">xs-2</div>
+    </div>
+    <h2>列的偏移offset</h2>
+    <div class="row">
+        <div class="col-xs-4">菜单xs-4</div>
+        <div class="col-xs-3 col-xs-offset-5">输入框xs-3</div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--<script>-->
+    <!--//    用来提示自己出现的错误-&#45;&#45;只限于开发阶段使用-->
+    <!--(function () {-->
+        <!--var s = document.createElement("script");-->
+        <!--s.onload = function () {-->
+            <!--bootlint.showLintReportForCurrentDocument([]);-->
+        <!--};-->
+        <!--s.src = "js/bootlint.js";-->
+        <!--document.body.appendChild(s)-->
+    <!--})();-->
+<!--</script>-->
+</body>
+</html>

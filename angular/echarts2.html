@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myProject</title>
+    <!-- 引入 lib/echarts.custom.min.js -->
+    <!--<script src="js/echarts.common.min.js"></script>-->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>-->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
+
+</head>
+<body>
+<div id="main" style="width: 1000px;height:600px;"></div>
+<script>
+    // 绘制图表。
+    var myChart=echarts.init(document.getElementById('main'));
+    var app = {};
+    option = null;
+    var data = [
+
+        {name: '菏泽', value: 194,str:'江苏'},
+        {name: '合肥市高新区创新大道2800号创新产业园2期J1栋C座803', value: 229,str:'江苏'},
+        {name: '武汉', value: 273,str:'江苏'},
+        {name: '大庆市', value: 100,str:'江苏'}
+    ];
+    console.log(data.sort(function (a, b) {
+        return b.value - a.value;
+    }).slice(0, 6))
+    var geoCoordMap = {
+        '湘潭':[112.91,27.87],
+        '金华':[119.64,29.12],
+        '岳阳':[113.09,29.37],
+        '长沙':[113,28.21],
+        '衢州':[118.88,28.97],
+        '廊坊':[116.7,39.53],
+        '菏泽':[115.480656,35.23375],
+        '合肥市高新区创新大道2800号创新产业园2期J1栋C座803':[117.27,31.86],
+        '武汉':[114.31,30.52],
+        '大庆市':[125.03,46.58]
+    };
+
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    str:data[i].str,
+                    value: geoCoord.concat(data[i].value),
+                });
+            }
+        }
+        console.log(res)
+        return res;
+    };
+
+    option = {
+        title: {
+            text: '全国主要城市空气质量 - 百度地图',
+            subtext: 'data from PM25.in',
+            sublink: 'http://www.pm25.in',
+            left: 'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: function (params) {
+                // console.log(params);
+                for (var i = 0; i < option.series[0].data.length; i++) {
+                    if (option.series[0].data[i].name == params.name) {
+                        return params.name+params.data.str+ +":"+ option.series[0].data[i].value+"起";
+                    }
+                }
+            }
+
+        },
+        bmap: {
+            center: [104.114129, 37.550339],
+            zoom: 5,
+            roam: true,
+            mapStyle: {
+                styleJson: [{
+                    'featureType': 'water',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'land',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#f3f3f3'
+                    }
+                }, {
+                    'featureType': 'railway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#fdfdfd'
+                    }
+                }, {
+                    'featureType': 'highway',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'geometry.fill',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'poi',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'green',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'subway',
+                    'elementType': 'all',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'manmade',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'local',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'arterial',
+                    'elementType': 'labels',
+                    'stylers': {
+                        'visibility': 'off'
+                    }
+                }, {
+                    'featureType': 'boundary',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#fefefe'
+                    }
+                }, {
+                    'featureType': 'building',
+                    'elementType': 'all',
+                    'stylers': {
+                        'color': '#d1d1d1'
+                    }
+                }, {
+                    'featureType': 'label',
+                    'elementType': 'labels.text.fill',
+                    'stylers': {
+                        'color': '#999999'
+                    }
+                }]
+            }
+        },
+        series : [
+            // {
+            //     name: 'pm2.5',
+            //     type: 'scatter',
+            //     coordinateSystem: 'bmap',
+            //     data: convertData(data),
+            //     symbolSize: function (val) {
+            //         return val[2] / 10;
+            //     },
+            //     label: {
+            //         normal: {
+            //             formatter: '{a}{c}{b}',
+            //             position: 'right',
+            //             show:true
+            //         },
+            //         emphasis: {
+            //             show: true
+            //         }
+            //     },
+            //     itemStyle: {
+            //         normal: {
+            //             color: 'purple'
+            //         }
+            //     }
+            // },
+            {
+                name: 'Top',
+                type: 'effectScatter',
+                coordinateSystem: 'bmap',
+                data: convertData(data.sort(function (a, b) {
+                    return b.value - a.value;
+                }).slice(0, 6)),
+                symbolSize: function (val) {
+                    return val[2] / 10;
+                },
+                showEffectOn: 'render',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                // label: {
+                //     normal: {
+                //         formatter: '',
+                //         position: 'right',
+                //         show: false
+                //     }
+                // },
+                itemStyle: {
+                    normal: {
+                        color: 'purple',
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                zlevel: 1
+            }
+        ]
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+</body>
+</html>

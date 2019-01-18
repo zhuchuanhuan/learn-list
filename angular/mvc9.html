@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--ng-model：可以直接声名模型变量，并且绑定在元素上;-->
+<!--方向一的绑定model>view，各种指令都可以实现-->
+<!--方向二的绑定view>model，只有ng-model指令可以-->
+<div class="container" ng-controller="C1">
+    <h2>购物车计算</h2>
+    <button class="btn btn-success" ng-click="addproduct()">添加商品</button>
+    <hr>
+    <div class="alert alert-danger" ng-repeat="x  in cart">
+        单价：{{x.price}}
+        数量：<input type="text "  ng-model="x.count">
+        小计：{{x.price*x.count}}
+    </div>
+    总计：{{}}
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng'])
+        .controller('C1', function ($scope) {
+//购物车是一个商品对象的数组
+            $scope.cart=[];
+            $scope.cart.push( {price:10,count:1})
+            $scope.cart.push( {price:20,count:3});
+            $scope.addproduct=function(){
+                var k={};
+                k.price=30;
+                k.count=1;
+                $scope.cart.push(k)
+            }
+        })
+</script>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html ng-app="docsIsolateScopeDirective">
+<meta charset="utf-8">
+
+<head>
+
+</head>
+<body>
+<div ng-controller="Ctrl">
+    <p shows style="font-size: 12px;"></p>
+    <hr>
+    <input type="text" ng-model="content">
+    <say-hello1 contentd="content">美女</say-hello1>
+    <say-hello2 contentd="{{content}}">美女</say-hello2>
+    <say-hello3 contentd="content">美女</say-hello3>
+    <greeting greet="sayHello(name)"></greeting>
+</div>
+</body>
+<script src="js/angular.min.js"></script>
+<script>
+    angular.module('docsIsolateScopeDirective', [])
+        .controller('Ctrl', function ($scope) {
+            $scope.content = '今天天气真好啊';
+            $scope.sayHello=function (name) {
+                alert('hello'+name)
+            }
+        })
+        .directive('shows', function(){
+            var func = function($scope, $element, $attrs){
+                console.log($scope);
+                console.log($element);
+                console.log($attrs);
+            }
+            return func;
+            //return {compile: function(){return func}}
+        })
+        .directive('sayHello1', function () {
+            return {
+                restrict: 'AE',
+                scope: {
+                    contentd: '='//使用父作用域中的一个属性，'绑定'数据到指令作用域的属性中.能够双向绑定
+                },
+                transclude: true,
+                replace: true,
+                template: '<div>hello，<b ng-transclude></b>{{contentd}}</div>',
+            };
+        })
+        .directive('sayHello2', function () {
+            return {
+                restrict: 'AE',
+                scope: {
+                    contentd: '@'//'传递'一个字符串（值）作为作用域属性的值，把当前属性的值作为字符串传递到指令作用域，还可以绑定来自外层scope的值，在属性值中插入{{}}即可
+                },
+                transclude: true,
+                replace: true,
+                template: '<div>hello，<b ng-transclude></b>{{contentd}}</div>',
+            };
+        })
+        .directive('sayHello3', function () {
+        return {
+            restrict: 'AE',
+            scope: {
+                contentd: '='
+            },
+            transclude: true,
+            replace: true,
+            template: '<input type="text" ng-model="contentd"/>',//指令里面的input：ng-model和HTML里面的input：ng-model双向绑定
+        };
+    }).directive('greeting',function () {
+        return {
+            restrict:'AE',
+            scope:{
+                greet:'&'//传递一个来自父scope的函数，稍后调用
+            },
+            template:'<br><input type="text" ng-model="userName"><br>'+
+            '<button class="btn btn-default" ng-click="greet({name:userName})">Greeting</button><br>'
+        }
+    })
+</script>
+</html>

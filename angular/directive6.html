@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="docsIsolateScopeDirective">
+<meta charset="utf-8">
+
+<head>
+
+</head>
+<body>
+<div ng-controller="testC">
+    <expander etitle="title">{{text}}</expander>
+</div>
+</body>
+<script src="js/angular.min.js"></script>
+<script>
+    angular.module('docsIsolateScopeDirective', [])
+        .controller('testC', function ($scope) {
+            $scope.title = '个人简介';
+            $scope.text = '大家好，我是一名前端工程师，我正在研究AngularJs，欢迎大家与我交流';
+        }).directive('expander', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'expanderTemp.html',//调用script里面的模板
+            replace: true,
+            transclude: true,
+            scope: {
+                mytitle: '=etitle'//通过指令里面的属性etitle《etitle="title"》获得父级变量title，再传给自己的作用域scope里面的变量mytitle，显示在指令返回的DOM上面《{{mytitle}}》
+            },
+            link: function (scope, element, attris) {
+                scope.showText = false;
+                scope.toggleText = function () {
+                    scope.showText = !scope.showText;
+                }
+            }
+        };
+    });
+</script>
+<script id="expanderTemp.html" type="text/ng-template">
+    <div class="mybox">
+        <div class="mytitle" ng-click="toggleText()">
+            {{mytitle}}
+        </div>
+        <div ng-transclude ng-show="showText"></div>
+    </div>
+</script>
+</html>

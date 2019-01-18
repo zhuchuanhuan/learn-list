@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mycss.css">
+</head>
+<body ng-controller="parentCtrl"><!----父级控制器在这里面添加$scope,给全局控制器都能用----->
+
+    <div class="page" ng-view></div><!--除ng-view的div以外的div都是一直显示，相当于公共的页面-->
+    <a class="btn btn-danger" href="#/main">跳转</a><!--定向一个路由地址,然后给angular解析-->
+    <!--<input type="button" class="btn btn-danger" ng-click="jump()" value="过去">-->
+
+</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.js"></script>
+<script src="js/echarts.common.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/my.js"></script>
+<script>//原理：需要自己解析URL，读取路由地址；查找路由字典，把里面母版页面的地址找到，发ajax请求页面，放到ng-viw这个元素里面
+    // angular.module('myModule1', ['ng', 'ngRoute'])
+    //     .config(function ($routeProvider) {//调用module。config()方法
+    //         $routeProvider.when('/start', {
+    //             templateUrl: 'tpl/start.html'//页面地址
+    //         }).when('/main', {
+    //             templateUrl: 'tpl/main.html'
+    //         }).when('/detail', {
+    //             templateUrl: 'tpl/detail.html'
+    //         }).otherwise({//若URL中未提供路由地址或提供了不存在的路由地址,定向给个URL地址
+    //             redirectTo:'/start'
+    //         })
+    //     })
+</script>
+</html>

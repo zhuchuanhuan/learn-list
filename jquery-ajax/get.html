@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.3.js"></script>
+</head>
+
+<body>
+<input type="button" value="load" id="btn">
+<div></div>
+<script>
+$("#btn").click(function(){
+	var user={"name":"zhuchuanhuan","pwd":"123"}
+	$.get("get.php",user,function(data){//该回调函数的形参就是服务器相应的数据内容
+		console.log(data)
+		},"json");
+	});
+//$.get(url,data,callback,type)
+//data-设置当前Ajax的请求数据，数据要求key：value，构建对象即可
+//callback回调函数data表示服务器响应的数据内容
+//type设置服务器响应数据的格式--默认为HTML
+// ---可以设置xml
+//----设置json
+</script>
+</body>
+</html>

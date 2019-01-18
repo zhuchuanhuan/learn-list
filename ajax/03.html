@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<select id="provicr">
+	 <option>请选择</option>
+     <option>山东省</option>
+     <option>江苏省</option>
+     <option>辽宁省</option>
+</select>
+<select id="city">
+	 <option>请选择</option>
+</select>
+<!--<script>
+//为select绑定onchange事件
+	var provinceEle=document.getElementById("provicr");
+	provinceEle.onchange=function(){
+		var sel=document.getElementById("city");
+		var opts=sel.getElementsByTagName("option")
+		//清空城市列表
+		for(var a=opts.length-1;a>0;a--){
+			sel.removeChild(opts[a])
+			}
+		var cities=[];
+		var province=provinceEle.value;
+		switch(province){
+			case "山东省":
+				cities=["青岛市","济南市","威海市"];
+			break;
+			case "辽宁省":
+				cities=["威海市","日照市","德州市"];
+			break;
+			}
+		//添加城市	
+		for(var i=0;i<cities.length;i++){
+			var option=document.createElement("option");
+			//var textNode=document.createTextNode(cities[i])
+			//sel.appendChild(textNode)
+			option.innerHTML=cities[i];
+			sel.appendChild(option)
+			}
+		}
+</script>-->
+<script>
+//为select绑定onchange事件
+	var provinceEle=document.getElementById("provicr");
+	provinceEle.onchange=function(){
+		var provcince=provinceEle.value;
+		var sel=document.getElementById("city");
+		//清空城市列表
+		var opts=sel.getElementsByTagName("option")
+		for(var a=opts.length-1;a>0;a--){
+			sel.removeChild(opts[a])
+			}
+		if(provcince!="请选择"){
+		var xhr=genXhr();
+		//建立连接open()方法，请求类型和位置
+		xhr.open("post","03.php");
+		//客服端向服务器发送请求参数send(请求参数)
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send("povcince="+provcince);
+		//监听服务器的通信状态
+		//接受服务器端的数据
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4){
+				if(xhr.status==200){
+					var data=xhr.responseText;
+					console.log(data)
+					var cties=data.split(",")
+					console.log(cties)
+					//添加城市	
+		for(var i=0;i<cties.length;i++){
+			var option=document.createElement("option");
+			//var textNode=document.createTextNode(cities[i])
+			//sel.appendChild(textNode)
+			option.innerHTML=cties[i];
+			sel.appendChild(option)
+			}
+					}
+				}
+			}
+			}
+		}
+	function genXhr(){
+		var xml;
+		if(window.XMLHttpRequest){
+			xml=new XMLHttpRequest();
+		}else{
+			  xml=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+		return xml;
+	}
+</script>
+</body>
+</html>

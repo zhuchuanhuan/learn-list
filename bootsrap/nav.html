@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<h2>标签页tab式导航</h2>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li><a data-toggle="tab" href="#">十元套餐</a></li>
+        <li class="active"><a data-toggle="tab" href="#">二十元套餐</a></li>
+        <li><a data-toggle="tab" href="#">三十元套餐</a></li>
+    </ul>
+    <br>
+    <ul class="nav nav-tabs nav-justified"><!--左右对齐沾满一行---->
+        <li class="active"><a data-toggle="tab" href="#tc10">十元套餐</a></li>
+        <li><a  data-toggle="tab" href="#tc20">二十元套餐</a></li>
+        <li><a data-toggle="tab" href="#tc30">三十元套餐</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tc10" class="tab-pane active fade in">十元套餐：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad autem, consequatur deserunt dolor dolore ea, eum eveniet excepturi explicabo in incidunt itaque labore nam neque odio quisquam repellendus, rerum similique.</div>
+        <div id="tc20" class="tab-pane fade">二十元套餐：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad autem, consequatur deserunt dolor dolore ea, eum eveniet excepturi explicabo in incidunt itaque labore nam neque odio quisquam repellendus, rerum similique.</div>
+        <div id="tc30" class="tab-pane fade">三十元套餐：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad autem, consequatur deserunt dolor dolore ea, eum eveniet excepturi explicabo in incidunt itaque labore nam neque odio quisquam repellendus, rerum similique.</div>
+    </div>
+</div>
+<h2>胶囊式式导航</h2>
+<ul class="nav nav-pills">
+    <li><a data-toggle="tab" href="#">十元套餐</a></li>
+    <li class="active"><a data-toggle="tab" href="#">二十元套餐</a></li>
+    <li><a data-toggle="tab" href="#">三十元套餐</a></li>
+</ul>
+<br>
+<ul class="nav nav-pills nav-justified">
+    <li><a data-toggle="tab" href="#">十元套餐</a></li>
+    <li class="active"><a data-toggle="tab" href="#">二十元套餐</a></li>
+    <li><a data-toggle="tab" href="#">三十元套餐</a></li>
+</ul>
+<h2>stack栈式导航</h2>
+<ul class="nav nav-pills nav-stacked">
+    <li><a data-toggle="tab" href="#">十元套餐</a></li>
+    <li class="active"><a data-toggle="tab" href="#">二十元套餐</a></li>
+    <li><a data-toggle="tab" href="#">三十元套餐</a></li>
+</ul>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

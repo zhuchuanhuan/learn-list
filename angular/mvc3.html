@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--方向一：把model数据绑定到view上，随时改变，不会像JavaScript里面有声名变量提前-->
+<!--ng模块中提供的服务（service）-->
+<!--1.$rootscope:用于在不同的控制器间共享数据-->
+<!--2.$interval:周期性定时器-->
+<script>
+    var age1 = 10;
+    console.log(age1);//age1加加但是上面的console.log里面不会改变
+    age1++;
+</script>
+<div class="container">
+    <h2>双向数据绑定</h2>
+    <p>{{age}}</p>
+    <div ng-controller="C1">
+        <p ng-click="add()">{{age}}</p>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng'])
+        .controller('C1', function ($scope, $interval) {
+        $scope.age = 10;
+        $scope.age++;
+        // $scope.add=function () {
+        //     $scope.age++
+        // }
+        $('p').click(function () {
+            $scope.age++
+        })
+        // $interval(function () {
+        //     $scope.age++;
+        //     console.log("model数据age的值被改变了" + $scope.age)
+        // }, 1000)
+    })
+</script>
+</html>

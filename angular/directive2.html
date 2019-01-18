@@ -1,0 +1,81 @@
+<!doctype html>
+<html ng-app="myModule">
+<meta charset="utf-8">
+<head>
+
+</head>
+<body>
+<div class="row">
+    <div class="col-md-3">
+        <superman strength>动感超人--力量</superman>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-md-3">
+        <superman strength speed>动感超人--力量+速度</superman>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-md-3">
+        <superman strength speed light>动感超人--力量+速度+发光</superman>//四个指令都执行了
+    </div>
+</div>
+<p></p>
+</body>
+<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+<!--<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script>
+ angular.module("myModule",['ng'])
+     .directive('superman',function () {
+         return{
+             scope:{},
+             restrict:'AE',
+             controller:function($scope){//给其他的指令调用提供方法
+                 $scope.abilities=[];
+                 this.addStrength=function () {
+                     $scope.abilities.push('strength')
+                 }
+                 this.addSpeed=function () {
+                     $scope.abilities.push('speed')
+                 }
+                 this.addLight=function () {
+                     $scope.abilities.push('light')
+                 }
+             },
+             link:function (scope, element, attrs) {//给元素绑定事件
+                 element.addClass('btn-success btn')
+                 element.bind('mouseenter',function () {
+                     console.log(scope.abilities)
+                 })
+             }
+         }
+     })
+     .directive('strength',function () {//指令执行的时候调用了superman指令里面的controller暴露的方法
+         return{
+             require:'^superman',
+             link:function (scope, element, attrs, supermanCtrl) {
+                 supermanCtrl.addStrength();
+             }
+         }
+     })
+     .directive('speed',function () {
+         return{
+             require:'^superman',
+             link:function (scope, element, attrs, supermanCtrl) {
+                 supermanCtrl.addSpeed();
+             }
+         }
+     })
+     .directive('light',function () {
+         return{
+             require:'^superman',
+             link:function (scope, element, attrs, supermanCtrl) {
+                 supermanCtrl.addLight();
+             }
+         }
+     })
+</script>
+</html>

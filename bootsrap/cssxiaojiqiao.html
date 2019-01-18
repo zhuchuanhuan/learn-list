@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    .parent{
+        width: 100px;
+        height: 80px;
+    }
+    .p1{
+        background: yellow;
+    }
+    .p2{
+        background-color: #2aabd2;
+    }
+    .p2:before{
+        content: ' ';
+        display: table;
+    }
+    .c1{
+        width: 50px;
+        height: 40px;
+        background-color: #419641;
+        margin-top: 5px;/*直接给子元素加margin会越界到父级所以不行*/
+    }
+    .p3{
+        background: #9acfea;
+        width:600px;
+
+    }
+    .c31{
+        background: #aaf;
+        width: 200px;
+        heigth:50px;
+        float: left;
+    }
+    .c32{
+        background: #2aabd2;
+        width: 200px;
+        heigth:50px;
+        float: left;
+    }
+    .p3:after{
+        content: ' ';
+        display:block;
+        clear:both;
+    }
+</style>
+<body>
+<h1>bootstrap提供的两种容器</h1>
+<div class="container">
+   <h3>如何解决子元素的margin-top/bottom越界问题</h3>
+    <div class="parent p1"></div>
+    <div class="parent p2">
+        <div class="c1"></div>
+    </div>
+    <h3>如何解决子元素浮动对后续子元素的影响</h3>
+    <div class="p3">
+        <div class="c31">C31</div>
+        <div class="c32">C32</div>
+        <!--<div style="clear:both"></div>-->
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--<script>-->
+    <!--//    用来提示自己出现的错误-&#45;&#45;只限于开发阶段使用-->
+    <!--(function () {-->
+        <!--var s = document.createElement("script");-->
+        <!--s.onload = function () {-->
+            <!--bootlint.showLintReportForCurrentDocument([]);-->
+        <!--};-->
+        <!--s.src = "js/bootlint.js";-->
+        <!--document.body.appendChild(s)-->
+    <!--})();-->
+<!--</script>-->
+</body>
+</html>

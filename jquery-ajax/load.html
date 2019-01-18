@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.3.js"></script>
+</head>
+
+<body>
+<input type="button" value="load" id="btn">
+<div></div>
+<script>
+$("#btn").click(function(){
+	var user={"name":"zhuchuanhuan","pwd":"123"}
+	//load()方法接受服务器的相应数据是字符串形式
+	//load()方法请求类型是由是否发送请求数据来决定
+	$("div").load("load.php",user,function(data){//该回调函数的形参就是服务器相应的数据内容
+		console.log(eval("(+data+)"))
+		});
+	});
+</script>
+</body>
+</html>

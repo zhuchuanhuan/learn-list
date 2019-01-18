@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+function parseXML(xml){
+	var xmlDoc=null;
+	if (window.DOMParser)
+	{
+	var parser=new DOMParser();
+	xmlDoc=parser.parseFromString(xml,"text/xml");
+	}
+	else // Internet Explorer
+	{
+	xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+	xmlDoc.async=false;
+	xmlDoc.loadXML(xml); 
+	}
+	return xmlDoc;
+}
+var pars=parseXML("xml.xml")
+console.log(pars)
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--ng-model：可以直接声名模型变量，并且绑定在元素上;-->
+<!--方向一的绑定model>view，各种指令都可以实现-->
+<!--方向二的绑定view>model，只有ng-model指令可以-->
+<div class="container">
+    <h2>ng模块服务$http</h2>
+    <input ng-disabled="isloaded" ng-click="loadempinfo" class="btn btn-danger" value="添加数据"></input>
+    <div ng-controller="C1">
+        <table class="table">
+            <header>
+                <tr>
+                    <th>选择</th>
+                    <th>姓名</th>
+                    <th>工资</th>
+                    <th>操作</th>
+                </tr>
+            </header>
+            <tbody>
+            <tr ng-repeat="emp in plist">
+                <td>
+                    <input type="checkbox" ng-checked="seclectall"><!---ng-checkbox实现方向一得到ture/false---->
+                </td>
+                <td>{{emp.numes | uppercase}}</td><!---过滤器首字母大写---->
+                <td>{{emp.sarrg | currency : '￥'}}</td><!---货币中国---->
+                <td><input type="button" class="btn btn-danger" value="操作"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" ng-checked="seclectall">
+                </td>
+                <td>{{emp.numes}}</td>
+                <td>{{emp.sarrg}}</td>
+                <td><input type="button" class="btn btn-danger" value="操作"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" ng-checked="seclectall">
+                </td>
+                <td>{{emp.numes}}</td>
+                <td>{{emp.sarrg}}</td>
+                <td><input type="button" class="btn btn-danger" value="操作"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" ng-checked="seclectall">
+                </td>
+                <td>{{emp.numes}}</td>
+                <td>{{emp.sarrg}}</td>
+                <td><input type="button" class="btn btn-danger" value="操作"></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="checkbox" ng-model="seclectall">
+        <span ng-hide="seclectall">全选</span>
+        <span ng-show="seclectall">取消全选</span>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng'])
+        .controller('C1', function ($scope, $http) {
+            $scope.isloaded=false;
+            $scope.loadempinfo = function () {
+                $scope.isloaded=true;
+                //点击按钮向服务器发起ajax请求，加载数据
+                $http.get('data/9.php').success(function (data) {
+                    console.log(data);
+                    $scope.plist = 'data'
+                })
+            }
+        })
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html ng-app="myModule1">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--View：试图web项目中由html担当-->
+<!--Controller：指控制器，负责获取，删除，更新模型数据，web由事件和function担当-->
+<!--Model:指业务数据，web项目中由js变量，字符串，对象，数组等担当.!!!!!!-->
+<!--ng-model：可以直接声名模型变量，并且绑定在元素上;-->
+<div class="container">
+    <h2>创建Model变量两种方法</h2>
+    <div ng-controller="C1">
+        <input ng-model="userName" type="text"><!--获得value值,绑定到模型变量province-->
+        <p>{{userName}}</p>
+        单价：<input ng-model="price" type="text">
+        数量：<input ng-model="count" type="text">
+        小计：<span>{{price*count}}</span><br>
+       <select ng-model="province"> <!--获得value值,绑定到模型变量province-->
+            <option value="dj">北京市</option>
+            <option value="cq">重庆省</option>
+            <option value="js">江苏省</option>
+        </select>
+        <p>{{province}}</p>
+        <input type="radio" name="sex" value="male" ng-model="xingb"><!--获得value值,绑定到模型变量province-->
+        <input type="radio" name="sex" value="female" ng-model="xingb">
+        性别：<p>{{xingb}}</p>
+        <input type="checkbox" value="tongyi" ng-model="iagree">我同意本站的使用条款<!--获得true值,绑定到模型变量igaree-->
+        <p>{{iagree}}</p>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script>
+    angular.module('myModule1', ['ng']).
+    controller('C1', function ($scope) {
+        //监视一个model数据的改变
+        $scope.$watch('userName',function () {//$watch专门监视数据，把监视的数据变量名写在里面
+            console.log('model数据userName的值被改变'+$scope.userName);
+        })
+        $scope.price=10;
+        $scope.$watch('price',function () {
+            console.log("model变量price值改变了"+$scope.price)
+        });
+        $scope.province='cq';
+        $scope.xingb='male';
+        $scope.$watch('xingb',function () {
+            console.log($scope.xingb)
+
+        })
+    })
+</script>
+</html>
